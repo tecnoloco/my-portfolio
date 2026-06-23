@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef } from "react";
+import { useRef, useEffect } from "react";
 import Image from "next/image";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
@@ -9,9 +9,19 @@ import Button from "@/app/components/ui/Button";
 
 gsap.registerPlugin(SplitText);
 
+interface Column {
+  x: number;
+  y: number;
+  speed: number;
+  chars: string[];
+  tick: number;
+  fontSize: number;
+}
+
 export default function Hero() {
   const containerRef = useRef<HTMLDivElement>(null);
   const nameRef = useRef<HTMLHeadingElement>(null);
+  const canvasRef = useRef<HTMLCanvasElement>(null);
 
   useGSAP(
     () => {
@@ -109,12 +119,124 @@ export default function Hero() {
     { scope: containerRef },
   );
 
+  useEffect(() => {
+    if (
+      typeof window !== "undefined" &&
+      window.matchMedia("(prefers-reduced-motion: reduce)").matches
+    ) {
+      return;
+    }
+
+    const canvas = canvasRef.current;
+    if (!canvas) return;
+
+    const ctx = canvas.getContext("2d");
+    if (!ctx) return;
+
+    const CHARSET = "{}[]()<>/\\==>+-*&|!?@#;:~^%$0123456789ABCDEFabcdef";
+    const COLUMN_SPACING = 20;
+    const TRAIL_LENGTH = 20;
+    const MIN_SPEED = 0.1;
+    const MAX_SPEED = 0.6;
+    const MIN_FONT_SIZE = 12;
+    const MAX_FONT_SIZE = 28;
+
+    let columns: Column[] = [];
+    let sectionHeight = 0;
+
+    const initColumns = () => {
+      const sectionElement = containerRef.current;
+      if (!sectionElement) return;
+
+      sectionHeight = sectionElement.clientHeight;
+      canvas.width = sectionElement.clientWidth;
+      canvas.height = sectionHeight;
+
+      columns = [];
+      for (let x = 0; x < canvas.width; x += COLUMN_SPACING) {
+        const randomOffsetY = Math.random() * sectionHeight;
+        const fontSize =
+          MIN_FONT_SIZE + Math.random() * (MAX_FONT_SIZE - MIN_FONT_SIZE);
+        columns.push({
+          x,
+          y: randomOffsetY - sectionHeight * 1.5,
+          speed: MIN_SPEED + Math.random() * (MAX_SPEED - MIN_SPEED),
+          chars: Array.from(
+            { length: TRAIL_LENGTH },
+            () => CHARSET[Math.floor(Math.random() * CHARSET.length)],
+          ),
+          tick: 0,
+          fontSize,
+        });
+      }
+    };
+
+    const resizeObserver = new ResizeObserver(() => {
+      initColumns();
+    });
+
+    if (containerRef.current) {
+      resizeObserver.observe(containerRef.current);
+    }
+
+    initColumns();
+
+    const draw = (_time: number, deltaTime: number) => {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+      columns.forEach((col) => {
+        const charHeight = col.fontSize * 1.2;
+        col.y += col.speed * deltaTime;
+        col.tick++;
+
+        if (col.tick % 8 === 0) {
+          col.chars.shift();
+          col.chars.push(CHARSET[Math.floor(Math.random() * CHARSET.length)]);
+        }
+
+        if (col.y > sectionHeight) {
+          col.y = -TRAIL_LENGTH * charHeight;
+          col.chars = Array.from(
+            { length: TRAIL_LENGTH },
+            () => CHARSET[Math.floor(Math.random() * CHARSET.length)],
+          );
+        }
+
+        ctx.font = `${col.fontSize}px 'Courier New', monospace`;
+        col.chars.forEach((char, index) => {
+          const charY = col.y + index * charHeight;
+
+          if (charY < -charHeight || charY > sectionHeight) {
+            return;
+          }
+
+          const opacity =
+            index === TRAIL_LENGTH - 1 ? 0.5 : 0.2 * (1 - index / TRAIL_LENGTH);
+          ctx.fillStyle = `rgba(212, 168, 83, ${opacity})`;
+          ctx.fillText(char, col.x, charY + charHeight);
+        });
+      });
+    };
+
+    gsap.ticker.add(draw, false, false);
+
+    return () => {
+      gsap.ticker.remove(draw);
+      resizeObserver.disconnect();
+    };
+  }, []);
+
   return (
     <section
       id="hero"
       ref={containerRef}
       className="relative min-h-screen flex items-center justify-center px-6 pt-20 md:pt-0"
     >
+      <canvas
+        ref={canvasRef}
+        aria-hidden="true"
+        className="absolute inset-0 w-full h-full pointer-events-none"
+      />
       <div className="max-w-7xl w-full grid md:grid-cols-2 gap-12 items-center">
         {/* Left: Text content */}
         <div className="space-y-6 md:space-y-8">
