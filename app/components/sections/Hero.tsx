@@ -5,9 +5,10 @@ import Image from "next/image";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import SplitText from "gsap/SplitText";
+import ScrambleTextPlugin from "gsap/ScrambleTextPlugin";
 import Button from "@/app/components/ui/Button";
 
-gsap.registerPlugin(SplitText);
+gsap.registerPlugin(SplitText, ScrambleTextPlugin);
 
 interface Column {
   x: number;
@@ -114,11 +115,37 @@ export default function Hero() {
           repeat: -1,
           yoyo: true,
         });
+        // Hero name scramble effect
+        const TEXT_1 = "Eduardo Espinosa";
+        const TEXT_2 = "tecnoloco";
+        const UNICODE_CHARS =
+          "ΑΒΓΔΕΖΗΘΙΚΛΜΝΞΟΠΡΣΤΥΦΧΨΩабвгдежзийклмнопрстуфхцчшщъыьэюяქხჯჰฟภมยรลวศษสหฬอัีึืุูเแโใไๅๆ๏๑๒๓๔๕๖๗๘๙໐໑໒໓໔໕໖໗໘໙";
+
+        let isShowingText1 = true;
+
+        const startScrambleLoop = () => {
+          setTimeout(() => {
+            const interval = setInterval(() => {
+              isShowingText1 = !isShowingText1;
+              gsap.to(".hero-name", {
+                duration: 0.6,
+                scrambleText: {
+                  text: isShowingText1 ? TEXT_1 : TEXT_2,
+                  chars: UNICODE_CHARS,
+                },
+              });
+            }, 5000);
+
+            return () => clearInterval(interval);
+          }, 1500);
+        };
+        startScrambleLoop();
       });
     },
     { scope: containerRef },
   );
 
+  // Matrix like background animation
   useEffect(() => {
     if (
       typeof window !== "undefined" &&
@@ -134,7 +161,7 @@ export default function Hero() {
     if (!ctx) return;
 
     const CHARSET = "{}[]()<>/\\==>+-*&|!?@#;:~^%$0123456789ABCDEFabcdef";
-    const COLUMN_SPACING = 20;
+    const COLUMN_SPACING = 60;
     const TRAIL_LENGTH = 20;
     const MIN_SPEED = 0.1;
     const MAX_SPEED = 0.6;
@@ -246,9 +273,10 @@ export default function Hero() {
 
           <h1
             ref={nameRef}
-            className="hero-name text-5xl md:text-7xl lg:text-8xl font-bold text-text-primary leading-tight"
+            className="text-5xl md:text-4xl lg:text-5xl font-bold text-text-primary leading-tight"
           >
-            Eduardo Espinosa
+            <span className="hero-greeting block"> Hello I&apos;m</span>
+            <span className="hero-name block">Eduardo Espinosa</span>
           </h1>
 
           <p className="hero-tagline text-xl md:text-2xl text-text-secondary font-light leading-relaxed max-w-xl">
