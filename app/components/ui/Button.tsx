@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { forwardRef } from "react";
 
 interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   variant?: "primary" | "outline" | "ghost";
@@ -8,14 +9,18 @@ interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   className?: string;
 }
 
-export default function Button({
-  variant = "primary",
-  size = "md",
-  href,
-  children,
-  className = "",
-  ...props
-}: ButtonProps) {
+const Button = forwardRef<HTMLButtonElement | HTMLAnchorElement, ButtonProps>(
+  (
+    {
+      variant = "primary",
+      size = "md",
+      href,
+      children,
+      className = "",
+      ...props
+    },
+    ref,
+  ) => {
   const baseStyles =
     "inline-flex items-center justify-center font-medium rounded-lg";
 
@@ -32,19 +37,23 @@ export default function Button({
     ghost: "text-text-primary hover:bg-surface-raised active:scale-95",
   };
 
-  const combinedClassName = `${baseStyles} ${sizeStyles[size]} ${variantStyles[variant]} ${className}`;
+    const combinedClassName = `${baseStyles} ${sizeStyles[size]} ${variantStyles[variant]} ${className}`;
 
-  if (href) {
+    if (href) {
+      return (
+        <Link href={href} className={combinedClassName} ref={ref as React.Ref<HTMLAnchorElement>}>
+          {children}
+        </Link>
+      );
+    }
+
     return (
-      <Link href={href} className={combinedClassName}>
+      <button ref={ref as React.Ref<HTMLButtonElement>} className={combinedClassName} {...props}>
         {children}
-      </Link>
+      </button>
     );
-  }
+  },
+);
 
-  return (
-    <button className={combinedClassName} {...props}>
-      {children}
-    </button>
-  );
-}
+Button.displayName = "Button";
+export default Button;

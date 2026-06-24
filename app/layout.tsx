@@ -4,6 +4,7 @@ import "./globals.css";
 import NavBar from "@/app/components/ui/NavBar";
 import GSAPProvider from "@/app/components/GSAPProvider";
 import AnimatedBackground from "@/app/components/ui/AnimatedBackground";
+import { CursorProvider } from "@/app/components/ui/CustomCursor";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -48,9 +49,11 @@ export default function RootLayout({
     >
       <body className="bg-surface-base text-text-primary flex flex-col min-h-screen">
         <GSAPProvider>
-          {/* <AnimatedBackground /> */}
-          <NavBar />
-          {children}
+          <CursorProvider>
+            {/* <AnimatedBackground /> */}
+            <NavBar />
+            {children}
+          </CursorProvider>
         </GSAPProvider>
       </body>
     </html>

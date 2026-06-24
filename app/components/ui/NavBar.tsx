@@ -3,6 +3,9 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import Button from "./Button";
+import { withCursorInteraction } from "@/app/components/hoc/withCursorInteraction";
+
+const ButtonWithCursor = withCursorInteraction(Button);
 
 export default function NavBar() {
   const [isGlass, setIsGlass] = useState(false);
@@ -53,9 +56,9 @@ export default function NavBar() {
                 {link.label}
               </Link>
             ))}
-            <Button size="sm" variant="outline">
+            <ButtonWithCursor size="sm" variant="outline">
               Get in Touch
-            </Button>
+            </ButtonWithCursor>
           </div>
 
           {/* Mobile hamburger */}

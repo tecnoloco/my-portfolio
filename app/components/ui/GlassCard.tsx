@@ -1,17 +1,19 @@
-interface GlassCardProps {
+import React, { forwardRef } from "react";
+
+interface GlassCardProps extends React.HTMLAttributes<HTMLDivElement> {
   children: React.ReactNode;
   className?: string;
-  as?: "div" | "article" | "section";
 }
 
-export default function GlassCard({
-  children,
-  className = "",
-  as: Component = "div",
-}: GlassCardProps) {
-  return (
-    <Component className={`glass rounded-lg p-6 ${className}`}>
-      {children}
-    </Component>
-  );
-}
+const GlassCard = forwardRef<HTMLDivElement, GlassCardProps>(
+  ({ children, className = "" }, ref) => {
+    return (
+      <div ref={ref} className={`glass rounded-lg p-6 ${className}`}>
+        {children}
+      </div>
+    );
+  },
+);
+
+GlassCard.displayName = "GlassCard";
+export default GlassCard;
