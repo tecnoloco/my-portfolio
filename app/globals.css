@@ -40,11 +40,21 @@ body {
   font-family: var(--font-sans), system-ui, sans-serif;
 }
 
+
+/* Hero initial states — prevent flash before GSAP animates in */
+.hero-heading,
+.hero-label,
+.hero-tagline,
+.hero-description,
+.hero-cta > *,
+.hero-profile {
+  opacity: 0;
+}
+
 .glass {
   background: rgba(34, 38, 47, 0.6);
   backdrop-filter: blur(12px) saturate(1.4);
 }
-
 
 @media (prefers-reduced-motion: reduce) {
   *,
@@ -52,5 +62,25 @@ body {
   *::after {
     animation-duration: 0.01ms !important;
     transition-duration: 0.01ms !important;
+  }
+
+  .hero-heading,
+  .hero-label,
+  .hero-tagline,
+  .hero-description,
+  .hero-cta > *,
+  .hero-profile {
+    opacity: 1;
+  }
+}
+
+@media (pointer: fine) and (prefers-reduced-motion: no-preference) {
+  a,
+  button,
+  [role="button"],
+  input,
+  textarea,
+  select {
+    cursor: none !important;
   }
 }

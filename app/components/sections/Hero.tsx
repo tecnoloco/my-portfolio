@@ -7,8 +7,11 @@ import gsap from "gsap";
 import SplitText from "gsap/SplitText";
 import ScrambleTextPlugin from "gsap/ScrambleTextPlugin";
 import Button from "@/app/components/ui/Button";
+import { withCursorInteraction } from "@/app/components/hoc/withCursorInteraction";
 
 gsap.registerPlugin(SplitText, ScrambleTextPlugin);
+
+const ButtonWithCursor = withCursorInteraction(Button);
 
 interface Column {
   x: number;
@@ -39,71 +42,52 @@ export default function Hero() {
           mask: "chars",
         });
 
+        // Reveal container now that chars are hidden individually by .char CSS
+        gsap.set(nameRef.current, { opacity: 1 });
+
         const tl = gsap.timeline({
           defaults: { ease: "power3.out" },
         });
 
         // Role label
-        tl.from(".hero-label", {
-          y: 20,
-          opacity: 0,
-          duration: 0.6,
-        });
+        tl.fromTo(".hero-label", { y: 20, opacity: 0 }, { y: 0, opacity: 1, duration: 0.6 });
 
-        // Name characters
+        // Name characters — mask clips them, no opacity needed
         tl.from(
           split.chars,
-          {
-            y: "100%",
-            opacity: 0,
-            stagger: 0.02,
-            duration: 0.7,
-          },
+          { y: "100%", stagger: 0.02, duration: 0.7 },
           "-=0.3",
         );
 
         // Tagline
-        tl.from(
+        tl.fromTo(
           ".hero-tagline",
-          {
-            y: 30,
-            opacity: 0,
-            duration: 0.7,
-          },
+          { y: 30, opacity: 0 },
+          { y: 0, opacity: 1, duration: 0.7 },
           "-=0.5",
         );
 
         // Description
-        tl.from(
+        tl.fromTo(
           ".hero-description",
-          {
-            y: 20,
-            opacity: 0,
-            duration: 0.6,
-          },
+          { y: 20, opacity: 0 },
+          { y: 0, opacity: 1, duration: 0.6 },
           "-=0.4",
         );
 
         // CTA buttons
-        tl.from(
+        tl.fromTo(
           ".hero-cta > *",
-          {
-            y: 20,
-            opacity: 0,
-            stagger: 0.1,
-            duration: 0.5,
-          },
+          { y: 20, opacity: 0 },
+          { y: 0, opacity: 1, stagger: 0.1, duration: 0.5 },
           "-=0.3",
         );
 
         // Profile image
-        tl.from(
+        tl.fromTo(
           ".hero-profile",
-          {
-            scale: 0.8,
-            opacity: 0,
-            duration: 0.8,
-          },
+          { scale: 0.8, opacity: 0 },
+          { scale: 1, opacity: 1, duration: 0.8 },
           "-=0.5",
         );
 
@@ -273,7 +257,7 @@ export default function Hero() {
 
           <h1
             ref={nameRef}
-            className="text-5xl md:text-4xl lg:text-5xl font-bold text-text-primary leading-tight"
+            className="hero-heading text-5xl md:text-4xl lg:text-5xl font-bold text-text-primary leading-tight"
           >
             <span className="hero-greeting block"> Hello I&apos;m</span>
             <span className="hero-name block">Eduardo Espinosa</span>
@@ -290,22 +274,22 @@ export default function Hero() {
           </p>
 
           <div className="hero-cta flex flex-col sm:flex-row gap-4 pt-4">
-            <Button
+            <ButtonWithCursor
               size="lg"
               variant="primary"
               href="#projects"
               className="block text-center"
             >
               View Projects
-            </Button>
-            <Button
+            </ButtonWithCursor>
+            <ButtonWithCursor
               size="lg"
               variant="outline"
               href="#contact"
               className="block text-center"
             >
               Get in Touch
-            </Button>
+            </ButtonWithCursor>
           </div>
 
           {/* Company mentions */}
