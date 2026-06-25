@@ -25,8 +25,11 @@ const specialties = [
 
 export default function About() {
   return (
-    <section id="about" className="py-24 px-6 max-w-7xl mx-auto">
-      <div className="grid md:grid-cols-[1fr_1.2fr] gap-12 items-start">
+    <section
+      id="about"
+      className="py-24 px-6 flex items-center bg-surface-overlay"
+    >
+      <div className="max-w-7xl mx-auto grid md:grid-cols-[1fr_1.2fr] gap-12 items-start">
         {/* Left column */}
         <div>
           <p className="text-accent text-sm font-semibold mb-4 uppercase tracking-wider">
@@ -38,18 +41,18 @@ export default function About() {
 
           <div className="space-y-4 text-text-secondary">
             <p>
-              I'm a Senior Software Engineer based in Querétaro, Mexico, with
-              over a decade of experience building production systems across
-              fintech, marketplaces, and mobile platforms. My focus is the
-              intersection of user experience and system reliability.
+              I&apos;m a Senior Software Engineer based in Querétaro, Mexico,
+              with over a decade of experience building production systems
+              across fintech, marketplaces, and mobile platforms. My focus is
+              the intersection of user experience and system reliability.
             </p>
             <p>
-              I've led teams through payment infrastructure redesigns, modernized
-              mobile codebases, and delivered compliance-sensitive workflows that
-              handle real money and worker trust. I care about building interfaces
-              that feel clear and trustworthy, while understanding the backend
-              workflows, APIs, and monitoring systems that make those experiences
-              reliable.
+              I&apos;ve led teams through payment infrastructure redesigns,
+              modernized mobile codebases, and delivered compliance-sensitive
+              workflows that handle real money and worker trust. I care about
+              building interfaces that feel clear and trustworthy, while
+              understanding the backend workflows, APIs, and monitoring systems
+              that make those experiences reliable.
             </p>
           </div>
 
@@ -61,7 +64,9 @@ export default function About() {
             </div>
             <div className="flex items-baseline gap-2">
               <span className="text-2xl font-bold text-accent">6</span>
-              <span className="text-text-secondary">Companies shipped with</span>
+              <span className="text-text-secondary">
+                Companies shipped with
+              </span>
             </div>
             <div className="flex items-baseline gap-2">
               <span className="text-2xl font-bold text-accent">50+</span>

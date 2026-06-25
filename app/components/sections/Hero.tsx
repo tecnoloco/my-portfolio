@@ -50,7 +50,11 @@ export default function Hero() {
         });
 
         // Role label
-        tl.fromTo(".hero-label", { y: 20, opacity: 0 }, { y: 0, opacity: 1, duration: 0.6 });
+        tl.fromTo(
+          ".hero-label",
+          { y: 20, opacity: 0 },
+          { y: 0, opacity: 1, duration: 0.6 },
+        );
 
         // Name characters — mask clips them, no opacity needed
         tl.from(

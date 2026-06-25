@@ -16,7 +16,13 @@ const featuredProjects = [
     metricLabel: "fewer sync failures",
     description:
       "Redesigned financial synchronization from event-driven signals to scheduled batch processing using Django, Celery, and service-layer architecture. Added structured logging, Datadog metrics, and idempotency controls for reliable accounting workflows.",
-    technologies: ["Django", "Celery", "Python", "Datadog", "Service Architecture"],
+    technologies: [
+      "Django",
+      "Celery",
+      "Python",
+      "Datadog",
+      "Service Architecture",
+    ],
   },
   {
     title: "Instawork Card",
@@ -43,7 +49,13 @@ const featuredProjects = [
     metricLabel: "components migrated",
     description:
       "Led full migration of shared React Native components from Flow/JavaScript to TypeScript strict mode. Improved type safety, developer experience, and reduced runtime errors across mobile infrastructure.",
-    technologies: ["React Native", "TypeScript", "Flow", "Tooling", "Migration"],
+    technologies: [
+      "React Native",
+      "TypeScript",
+      "Flow",
+      "Tooling",
+      "Migration",
+    ],
   },
 ];
 
@@ -107,11 +119,15 @@ export default function Featured() {
         });
       });
     },
-    { scope: containerRef }
+    { scope: containerRef },
   );
 
   return (
-    <section id="featured" className="relative" ref={containerRef}>
+    <section
+      id="featured"
+      className="relative bg-surface-overlay"
+      ref={containerRef}
+    >
       {/* Horizontal scroll container for motion-capable users */}
       <div className="motion-safe:h-screen motion-safe:overflow-hidden motion-safe:w-full">
         <div
