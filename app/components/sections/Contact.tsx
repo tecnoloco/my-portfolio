@@ -3,6 +3,7 @@
 import { Mail, Code, Link, MapPin } from "lucide-react";
 import GlassCard from "@/app/components/ui/GlassCard";
 import Button from "@/app/components/ui/Button";
+import SnakeBackground from "@/app/components/ui/SnakeBackground";
 import { withCursorInteraction } from "@/app/components/hoc/withCursorInteraction";
 
 const ButtonWithCursor = withCursorInteraction(Button);
@@ -31,7 +32,9 @@ export default function Contact() {
   ];
 
   return (
-    <section id="contact" className="py-24 px-6 max-w-7xl mx-auto">
+    <section id="contact" className="relative py-24 px-6 max-w-7xl mx-auto overflow-hidden">
+      <SnakeBackground />
+      <div className="relative z-10">
       <div className="text-center mb-16">
         <h2 className="text-4xl md:text-5xl font-bold text-text-primary mb-4">
           Let&apos;s build something together
@@ -74,6 +77,7 @@ export default function Contact() {
         <ButtonWithCursor size="lg" variant="primary">
           Send me an email
         </ButtonWithCursor>
+      </div>
       </div>
     </section>
   );
