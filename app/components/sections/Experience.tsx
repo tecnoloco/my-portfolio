@@ -1,9 +1,11 @@
 import { EXPERIENCE } from "@/app/data/experience";
 import ExperienceTimeline from "./ExperienceTimeline";
+import DotParallaxBg from "@/app/components/ui/DotParallaxBg";
 
 export default function Experience() {
   return (
-    <section id="experience" className="py-24 px-6 flex items-center">
+    <section id="experience" className="relative py-24 px-6 flex items-center">
+      <DotParallaxBg />
       <div className="max-w-7xl mx-auto w-full">
         <div className="mb-12">
           <p className="text-accent text-sm font-semibold mb-4 uppercase tracking-wider">
