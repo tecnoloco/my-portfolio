@@ -6,6 +6,7 @@ export type Project = {
   technologies: string[];
   outcome: string;
   category: "fintech" | "marketplace" | "mobile" | "platform" | "infra";
+  url?: string;
   featured?: boolean;
 };
 
@@ -95,5 +96,52 @@ export const PROJECTS: Project[] = [
     technologies: ["React", "TypeScript", "Embeddable Components", "Financial APIs"],
     outcome: "Built reusable widget architecture adopted across multiple client sites, improving sync flows and trust through clearer state handling.",
     category: "fintech"
+  },
+  {
+    title: "SIMAR – Marine Monitoring Explorer",
+    company: "Marciano Studio",
+    context: "CONABIO needed an interactive public tool to explore marine monitoring data across Mexico's coastal regions.",
+    role: "Technical lead, developer, and client relationship manager",
+    technologies: ["Vue", "Leaflet"],
+    outcome: "Delivered an interactive geospatial explorer enabling researchers and the public to visualize real-time marine monitoring data.",
+    category: "platform",
+    url: "https://simar.conabio.gob.mx/explorer/"
+  },
+  {
+    title: "Michelin Internal E-Learning Platform",
+    company: "Marciano Studio",
+    context: "Michelin needed a web-based internal training platform that tracked learner progress and complied with the SCORM standard.",
+    role: "Technical lead and developer",
+    technologies: ["Vue", "SCORM"],
+    outcome: "Built a SCORM-compliant e-learning platform enabling Michelin to author, deliver, and track employee training across the organization.",
+    category: "platform"
+  },
+  {
+    title: "MyTicket – Events Ticketing System",
+    company: "MyTicket",
+    context: "Event organizers and attendees needed a reliable platform to publish events, manage availability, and purchase tickets online.",
+    role: "Technical lead and developer",
+    technologies: ["Vue"],
+    outcome: "Built a full-featured online ticketing system supporting event management and real-time ticket sales.",
+    category: "marketplace",
+    url: "https://myticket.com"
+  },
+  {
+    title: "Michelin Interactive Marketing Games",
+    company: "Marciano Studio",
+    context: "Michelin and its sub-brands needed engaging web experiences to support marketing campaigns and increase audience interaction.",
+    role: "Technical lead and developer",
+    technologies: ["Vue", "Angular"],
+    outcome: "Delivered multiple interactive web games and experiences for Michelin marketing campaigns, driving audience engagement across brands.",
+    category: "platform"
+  },
+  {
+    title: "Bticino Store CMS",
+    company: "Marciano Studio",
+    context: "Bticino store needed a dynamic way to configure and manage product pages without requiring backend development or code changes.",
+    role: "Frontend architect",
+    technologies: ["React"],
+    outcome: "Built a no-code CMS system with reusable React components enabling store managers to dynamically configure product pages and content layouts.",
+    category: "platform"
   }
 ];

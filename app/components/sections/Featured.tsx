@@ -11,7 +11,7 @@ gsap.registerPlugin(ScrollTrigger);
 const featuredProjects = [
   {
     title: "NetSuite Financial Sync",
-    year: "2023–2024",
+    year: "2025",
     metric: "90%",
     metricLabel: "fewer sync failures",
     description:
@@ -26,7 +26,7 @@ const featuredProjects = [
   },
   {
     title: "Instawork Card",
-    year: "2022–2023",
+    year: "2021–2023",
     metric: "2x",
     metricLabel: "retention improvement",
     description:
@@ -35,7 +35,7 @@ const featuredProjects = [
   },
   {
     title: "W-2 Instapay",
-    year: "2021–2022",
+    year: "2025",
     metric: "+15%",
     metricLabel: "business margins",
     description:
@@ -44,7 +44,7 @@ const featuredProjects = [
   },
   {
     title: "React Native TypeScript",
-    year: "2022",
+    year: "2024-2025",
     metric: "100%",
     metricLabel: "components migrated",
     description:
@@ -142,9 +142,6 @@ export default function Featured() {
               <div className="h-full flex flex-col justify-center px-6 md:px-12 lg:px-20 py-12">
                 <div className="panel-content max-w-2xl space-y-6">
                   <div>
-                    <p className="text-accent/60 text-sm font-semibold uppercase tracking-wider">
-                      {project.year}
-                    </p>
                     <h2 className="text-5xl md:text-6xl font-bold text-text-primary mt-2">
                       {project.title}
                     </h2>

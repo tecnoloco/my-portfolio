@@ -119,8 +119,8 @@ export default function ProjectsGrid({ projects }: ProjectsGridProps) {
         ref={gridRef}
         className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
       >
-        {filteredProjects.map((project) => (
-          <div key={project.title} className="project-card relative">
+        {filteredProjects.map((project) => {
+          const cardContent = (
             <GlassCard className="h-full relative overflow-hidden">
               {/* Glow effect */}
               <div className="card-glow absolute inset-0 opacity-0 bg-gradient-to-br from-accent/20 via-transparent to-transparent rounded-lg pointer-events-none" />
@@ -175,8 +175,25 @@ export default function ProjectsGrid({ projects }: ProjectsGridProps) {
                 </div>
               </div>
             </GlassCard>
-          </div>
-        ))}
+          );
+
+          return (
+            <div key={project.title} className="project-card relative">
+              {project.url ? (
+                <a
+                  href={project.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="block h-full hover:no-underline"
+                >
+                  {cardContent}
+                </a>
+              ) : (
+                cardContent
+              )}
+            </div>
+          );
+        })}
       </div>
     </div>
   );
