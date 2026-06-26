@@ -286,14 +286,15 @@ export default function Hero() {
             >
               View Projects
             </ButtonWithCursor>
-            <ButtonWithCursor
-              size="lg"
-              variant="outline"
-              href="#contact"
-              className="block text-center"
-            >
-              Get in Touch
-            </ButtonWithCursor>
+            <a href="/eduardo-espinosa-resume.pdf" download>
+              <ButtonWithCursor
+                size="lg"
+                variant="outline"
+                className="block text-center"
+              >
+                Download Resume
+              </ButtonWithCursor>
+            </a>
           </div>
 
           {/* Company mentions */}
@@ -313,9 +314,10 @@ export default function Hero() {
           <div className="relative w-full max-w-sm aspect-square">
             <div className="hero-profile absolute inset-0 glass rounded-2xl overflow-hidden shadow-2xl">
               <Image
-                src="/profile.png"
+                src="/profile.webp"
                 alt="Eduardo Espinosa"
                 fill
+                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                 className="object-cover"
                 priority
               />

@@ -79,9 +79,6 @@ export default function Contact() {
             <MapPin className="w-4 h-4" />
             Based in Querétaro, Mexico • Available remotely
           </p>
-          <ButtonWithCursor size="lg" variant="primary">
-            Send me an email
-          </ButtonWithCursor>
         </div>
       </div>
     </section>
