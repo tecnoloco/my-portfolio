@@ -2,11 +2,9 @@
 
 import { Mail, Code, Link, MapPin } from "lucide-react";
 import GlassCard from "@/app/components/ui/GlassCard";
-import Button from "@/app/components/ui/Button";
 import SnakeBackground from "@/app/components/ui/SnakeBackground";
 import { withCursorInteraction } from "@/app/components/hoc/withCursorInteraction";
 
-const ButtonWithCursor = withCursorInteraction(Button);
 const GlassCardWithCursor = withCursorInteraction(GlassCard);
 
 export default function Contact() {
@@ -34,7 +32,7 @@ export default function Contact() {
   return (
     <section
       id="contact"
-      className="relative py-24 px-6 overflow-hidden flex items-center"
+      className="relative py-24 px-6 overflow-hidden flex items-center min-h-[70vh]"
     >
       <SnakeBackground />
       <div className="relative z-10 max-w-7xl mx-auto">
