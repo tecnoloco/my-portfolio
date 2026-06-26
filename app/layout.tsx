@@ -3,7 +3,6 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import NavBar from "@/app/components/ui/NavBar";
 import GSAPProvider from "@/app/components/GSAPProvider";
-import AnimatedBackground from "@/app/components/ui/AnimatedBackground";
 import { CursorProvider } from "@/app/components/ui/CustomCursor";
 
 const geistSans = Geist({
@@ -19,12 +18,12 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "Eduardo Espinosa — Senior Software Engineer",
   description:
-    "Senior Software Engineer with 10+ years building fintech, marketplace, and mobile products. React, React Native, TypeScript, Django, payments.",
+    "Senior Software Engineer with 10+ years building fintech, marketplace, and mobile products. React, React Native, TypeScript, Python, Django, payments.",
   openGraph: {
     title: "Eduardo Espinosa — Senior Software Engineer",
     description:
       "Senior Software Engineer with 10+ years building fintech, marketplace, and mobile products.",
-    url: "https://eduardoespinosa.dev",
+    url: "https://tecnoloco.dev",
     siteName: "Eduardo Espinosa",
     locale: "en_US",
     type: "website",
@@ -50,7 +49,6 @@ export default function RootLayout({
       <body className="bg-surface-base text-text-primary flex flex-col min-h-screen">
         <GSAPProvider>
           <CursorProvider>
-            {/* <AnimatedBackground /> */}
             <NavBar />
             {children}
           </CursorProvider>
