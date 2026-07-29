@@ -261,7 +261,7 @@ export default function Hero() {
 
           <h1
             ref={nameRef}
-            className="hero-heading text-5xl md:text-4xl lg:text-5xl font-bold text-text-primary leading-tight"
+            className="hero-heading text-3xl md:text-4xl lg:text-5xl font-bold text-text-primary leading-tight"
           >
             <span className="hero-greeting block"> Hello I&apos;m</span>
             <span className="hero-name block">Eduardo Espinosa</span>
@@ -286,7 +286,11 @@ export default function Hero() {
             >
               View Projects
             </ButtonWithCursor>
-            <a href="/eduardo-espinosa-resume.pdf" download>
+            <a
+              href="/eduardo-espinosa-resume.pdf"
+              download
+              className="flex flex-col sm:flex-row"
+            >
               <ButtonWithCursor
                 size="lg"
                 variant="outline"

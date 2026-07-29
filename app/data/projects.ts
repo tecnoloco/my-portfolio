@@ -8,6 +8,11 @@ export type Project = {
   category: "fintech" | "marketplace" | "mobile" | "platform" | "infra";
   url?: string;
   featured?: boolean;
+  year?: string;
+  metric?: string;
+  metricLabel?: string;
+  description?: string;
+  image?: string;
 };
 
 export const PROJECTS: Project[] = [
@@ -19,7 +24,12 @@ export const PROJECTS: Project[] = [
     technologies: ["Django", "Celery", "Python", "Service Architecture", "Datadog"],
     outcome: "Reduced synchronization errors by approximately 90% through scheduled batch processing, improved observability, and added idempotency controls.",
     category: "infra",
-    featured: true
+    featured: true,
+    year: "2025",
+    metric: "90%",
+    metricLabel: "fewer sync failures",
+    description: "Redesigned financial synchronization from event-driven signals to scheduled batch processing using Django, Celery, and service-layer architecture. Added structured logging, Datadog metrics, and idempotency controls for reliable accounting workflows.",
+    image: "/projects/ns-sync-migration.webp"
   },
   {
     title: "Instawork Card",
@@ -29,7 +39,12 @@ export const PROJECTS: Project[] = [
     technologies: ["React Native", "TypeScript", "VGS", "Stripe", "Secure Payment Handling"],
     outcome: "Launched a secure debit-card product with transparent fees and transaction visibility, contributing to double-digit worker retention improvement.",
     category: "fintech",
-    featured: true
+    featured: true,
+    year: "2021–2023",
+    metric: "2x",
+    metricLabel: "retention improvement",
+    description: "Shipped a secure debit card product with transparent fee handling, real-time transaction visibility, and resilient error states. Led frontend and VGS integration work across React Native and web platforms.",
+    image: "/projects/iw-card-mockup-clean.webp"
   },
   {
     title: "W-2 Instapay",
@@ -39,7 +54,10 @@ export const PROJECTS: Project[] = [
     technologies: ["React", "React Native", "TypeScript", "Python", "Django", "Stripe", "Tax Calculations"],
     outcome: "Delivered instant payout workflows with proper eligibility logic and tax/fee handling, contributing to double-digit business margin improvement.",
     category: "fintech",
-    featured: true
+    year: "2025",
+    metric: "+15%",
+    metricLabel: "business margins",
+    description: "Built instant wage-access workflows enabling workers to claim earned wages immediately after clock-out. Implemented eligibility logic, tax/fee calculations, and safeguards while maintaining clear product copy."
   },
   {
     title: "Meals & Breaks Compliance",
@@ -58,7 +76,10 @@ export const PROJECTS: Project[] = [
     technologies: ["React Native", "TypeScript", "Flow", "Mobile Infrastructure"],
     outcome: "Migrated all shared components to strict TypeScript, improving type safety, developer experience, and maintainability across mobile surfaces.",
     category: "mobile",
-    featured: true
+    year: "2024-2025",
+    metric: "100%",
+    metricLabel: "components migrated",
+    description: "Led full migration of shared React Native components from Flow/JavaScript to TypeScript strict mode. Improved type safety, developer experience, and reduced runtime errors across mobile infrastructure."
   },
   {
     title: "Virtualized Filters & Large-Data UI",
@@ -85,17 +106,22 @@ export const PROJECTS: Project[] = [
     role: "Frontend Tech Lead and co-founder",
     technologies: ["Vue", "Nuxt.js", "GraphQL", "D3.js", "Neo4j"],
     outcome: "Built interactive visualizations mapping AI research evolution, launched MVP, scaled through acquisition by Instawork.",
+    description: "Designed and implemented a research platform visualizing relationships between AI papers, authors, models, and datasets. Built interactive D3.js visualizations and GraphQL APIs backed by Neo4j graph database.",
     category: "platform",
-    featured: true
+    featured: true,
+    image: "/projects/stateoftheartAI-mockup.webp"
   },
   {
     title: "Paybook Embedded Fintech Widgets",
     company: "Paybook",
     context: "Financial institutions needed flexible, customizable widgets for bank and tax account synchronization without building from scratch.",
     role: "Widget architecture and implementation",
-    technologies: ["React", "TypeScript", "Embeddable Components", "Financial APIs"],
+    technologies: ["Vue", "JavaScript", "Embeddable Components", "Financial APIs"],
     outcome: "Built reusable widget architecture adopted across multiple client sites, improving sync flows and trust through clearer state handling.",
-    category: "fintech"
+    description: "Developed embeddable Vue widgets for financial account synchronization, enabling clients to integrate Paybook's services seamlessly. Improved user trust with clear state handling and error feedback.",
+    category: "fintech",
+    featured: true,
+    image: "/projects/syncfy-widget.webp"
   },
   {
     title: "SIMAR – Marine Monitoring Explorer",
@@ -104,8 +130,11 @@ export const PROJECTS: Project[] = [
     role: "Technical lead, developer, and client relationship manager",
     technologies: ["Vue", "Leaflet"],
     outcome: "Delivered an interactive geospatial explorer enabling researchers and the public to visualize real-time marine monitoring data.",
+    description: "Built a geospatial data explorer using Vue and Leaflet, allowing users to visualize marine monitoring data across Mexico's coastal regions. Implemented interactive maps, filters, and data overlays for research and public engagement.",
     category: "platform",
-    url: "https://simar.conabio.gob.mx/explorer/"
+    url: "https://simar.conabio.gob.mx/explorer/",
+    featured: true,
+    image: "/projects/simar-mockup-clean.webp"
   },
   {
     title: "Michelin Internal E-Learning Platform",
